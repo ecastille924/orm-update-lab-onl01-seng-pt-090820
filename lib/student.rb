@@ -48,10 +48,16 @@ class Student
     new_student
   end
   
-  #def update 
-    #sql = "UPDATE students SET name = ? grade = ?, WHERE name = ?"
-    #DB[:conn].execute(sql, self.name, self.grade, self.name)
-  #end
+  def self.find_by_name(name)
+    sql = "SELECT FROM students WHERE name =?"
+    result = DB[:conn].execute(sql, name)[0]
+    self.new_from_db(result)
+  end
+  
+  def update 
+    sql = "UPDATE students SET name = ? grade = ?, WHERE name = ?"
+    DB[:conn].execute(sql, self.name, self.grade, self.name)
+  end
   
   
   # Remember, you can access your database connection anywhere in this class
