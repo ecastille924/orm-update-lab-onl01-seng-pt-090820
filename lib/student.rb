@@ -23,17 +23,11 @@ class Student
   end
   
   def self.drop_table
-    sql = <<-SQL
-    DROP TABLE students;
-    SQL
-    
+    sql = DROP TABLE students;
+
     DB[:conn].execute(sql)
   end
   
-  def update 
-    sql = "UPDATE students SET name = ? grade = ?, WHERE name = ?"
-    DB[:conn].execute(sql, self.name, self.grade, self.name)
-  end
   
   def save
      sql = <<-SQL
@@ -50,6 +44,11 @@ class Student
     student.save
     student
   end
+  
+  #def update 
+    #sql = "UPDATE students SET name = ? grade = ?, WHERE name = ?"
+    #DB[:conn].execute(sql, self.name, self.grade, self.name)
+  #end
   
   
   # Remember, you can access your database connection anywhere in this class
